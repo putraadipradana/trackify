@@ -6,6 +6,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Icon } from "@tabler/icons-react";
 import Link from "next/link";
@@ -21,6 +22,7 @@ export default function NavMain({
   }[];
 }) {
   const page = usePathname();
+  const { setOpenMobile } = useSidebar();
 
   return (
     <SidebarGroup>
@@ -31,7 +33,9 @@ export default function NavMain({
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 isActive={page.startsWith(item.url)}
-                render={<Link href={item.url} />}
+                render={
+                  <Link href={item.url} onClick={() => setOpenMobile(false)} />
+                }
               >
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>

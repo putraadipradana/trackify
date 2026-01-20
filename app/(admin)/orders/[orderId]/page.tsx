@@ -82,7 +82,7 @@ function OrderPageSkeleton() {
           <Skeleton className="size-8" />
         </div>
         <div className="flex items-center gap-2">
-          <Skeleton className="h-8 w-34" />
+          <Skeleton className="h-8 w-34 sm:flex hidden" />
           <Skeleton className="h-8 w-34" />
         </div>
       </div>
