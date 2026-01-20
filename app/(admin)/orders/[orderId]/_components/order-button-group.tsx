@@ -28,9 +28,28 @@ import {
   IconTag,
   IconTrash,
 } from "@tabler/icons-react";
+import { deleteOrderFn } from "@/server/orders";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-export function OrderButtonGroup() {
+export function OrderButtonGroup({ id }: { id: string }) {
   const [label, setLabel] = React.useState("personal");
+  const router = useRouter();
+
+  async function DeleteOrder(id: string) {
+    try {
+      const response = await deleteOrderFn(id);
+
+      if (response.success) {
+        toast.success(response.message);
+        router.push("/orders");
+      } else {
+        toast.error(response.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="flex items-center justify-between">
@@ -55,7 +74,7 @@ export function OrderButtonGroup() {
         </ButtonGroup>
         <ButtonGroup>
           <Button variant="outline" size="sm">
-            Snooze
+            Add Material
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger
@@ -119,7 +138,10 @@ export function OrderButtonGroup() {
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem variant="destructive">
+                <DropdownMenuItem
+                  variant="destructive"
+                  onClick={() => DeleteOrder(id)}
+                >
                   <IconTrash />
                   Delete
                 </DropdownMenuItem>

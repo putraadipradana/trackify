@@ -18,14 +18,9 @@ type Params = Promise<{
 
 export default async function Page({ params }: { params: Params }) {
   return (
-    <div className="">
-      <div className="flex flex-col gap-10">
-        <OrderButtonGroup />
-        <Suspense fallback={<OrderPageSkeleton />}>
-          <OrderDetailsPage params={params} />
-        </Suspense>
-      </div>
-    </div>
+    <Suspense fallback={<OrderPageSkeleton />}>
+      <OrderDetailsPage params={params} />
+    </Suspense>
   );
 }
 
@@ -44,6 +39,7 @@ async function OrderDetailsPage({ params }: { params: Params }) {
 
   return (
     <div className="flex flex-col gap-10">
+      {order && <OrderButtonGroup id={order.id} />}
       <div>
         <div className="flex items-center gap-4">
           <h1 className="text-xl/8 font-medium sm:text-2xl/8 font-mono tracking-tight">
@@ -73,11 +69,7 @@ async function OrderDetailsPage({ params }: { params: Params }) {
         </div>
       </div>
       <Separator />
-      <div className="">
-        {order?.material && (
-          <DataTable columns={columns} data={order.material} />
-        )}
-      </div>
+      {order?.material && <DataTable columns={columns} data={order.material} />}
     </div>
   );
 }
@@ -85,12 +77,21 @@ async function OrderDetailsPage({ params }: { params: Params }) {
 function OrderPageSkeleton() {
   return (
     <div className="flex flex-col gap-10">
+      <div className="flex items-center justify-between">
+        <div>
+          <Skeleton className="size-8" />
+        </div>
+        <div className="flex items-center gap-2">
+          <Skeleton className="h-8 w-34" />
+          <Skeleton className="h-8 w-34" />
+        </div>
+      </div>
       <div>
         <div className="flex items-center gap-4">
           <Skeleton className="w-full sm:max-w-xs max-w-60 h-7" />
           <Skeleton className="w-10 h-5" />
         </div>
-        <div className="flex flex-wrap gap-x-10 gap-y-4 py-1.5 mt-4">
+        <div className="flex flex-wrap gap-x-10 gap-y-6 py-1.5 mt-4">
           <span className="flex items-center gap-3">
             <Skeleton className="size-5" />
             <Skeleton className="h-5 w-28" />

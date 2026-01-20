@@ -46,7 +46,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between py-4 sm:gap-0 gap-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between sm:gap-0 gap-2">
         <Input
           placeholder="Search order number ..."
           value={
@@ -58,7 +58,7 @@ export function DataTable<TData, TValue>({
           className="sm:max-w-sm w-full"
         />
       </div>
-      <div className="overflow-hidden rounded-md border">
+      <div className="overflow-hidden rounded-md mt-5 border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
