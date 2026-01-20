@@ -24,6 +24,7 @@ import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { createOrderFn } from "@/server/orders";
+import { IconCirclePlus } from "@tabler/icons-react";
 import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -84,11 +85,14 @@ export default function CreateOrderForm() {
       direction={isMobile ? "bottom" : "right"}
     >
       <DrawerTrigger asChild>
-        <Button>Create order</Button>
+        <Button>
+          <IconCirclePlus />
+          Create order
+        </Button>
       </DrawerTrigger>
       <DrawerContent className="rounded-none!">
         <DrawerHeader className="gap-1">
-          <DrawerTitle>Create new post</DrawerTitle>
+          <DrawerTitle>Create new order</DrawerTitle>
           <DrawerDescription>Please fill all form</DrawerDescription>
         </DrawerHeader>
         <div className="flex flex-col gap-4 overflow-y-auto px-4">

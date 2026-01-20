@@ -68,19 +68,17 @@ export default function AppSidebar({
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
-              render={<Link href="/" />}
+              render={<Link href="/dashboard" />}
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
-              <IconInnerShadowTop className="size-5!" />
+              <IconInnerShadowTop className="size-5! text-teal-400 dark:text-teal-500" />
               <span className="text-base font-semibold">Trackify</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <Suspense fallback={<div>Loading...</div>}>
-          <NavMain items={navMain} />
-        </Suspense>
+        <NavMain items={navMain} />
         <NavSecondary items={navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>

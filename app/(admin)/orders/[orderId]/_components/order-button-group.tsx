@@ -66,15 +66,15 @@ export function OrderButtonGroup({ id }: { id: string }) {
       <ButtonGroup>
         <ButtonGroup className="sm:flex hidden">
           <Button variant="outline" size="sm">
-            Archive
+            Favorite
           </Button>
           <Button variant="outline" size="sm">
-            Report
+            Notes
           </Button>
         </ButtonGroup>
         <ButtonGroup>
           <Button variant="outline" size="sm">
-            Add Material
+            Archive
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger

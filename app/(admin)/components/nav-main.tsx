@@ -32,7 +32,7 @@ export default function NavMain({
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
-                isActive={page.startsWith(item.url)}
+                isActive={page === item.url}
                 render={
                   <Link href={item.url} onClick={() => setOpenMobile(false)} />
                 }
