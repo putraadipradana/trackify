@@ -71,7 +71,7 @@ export default function AppSidebar({
               render={<Link href="/dashboard" />}
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
-              <IconInnerShadowTop className="size-5! text-teal-400 dark:text-teal-500" />
+              <IconInnerShadowTop className="size-5! text-teal-500 dark:text-teal-400" />
               <span className="text-base font-semibold">Trackify</span>
             </SidebarMenuButton>
           </SidebarMenuItem>

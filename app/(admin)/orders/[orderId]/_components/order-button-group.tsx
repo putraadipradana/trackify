@@ -25,6 +25,9 @@ import {
   IconDots,
   IconFilterPlus,
   IconMail,
+  IconNote,
+  IconPlus,
+  IconStar,
   IconTag,
   IconTrash,
 } from "@tabler/icons-react";
@@ -66,14 +69,17 @@ export function OrderButtonGroup({ id }: { id: string }) {
       <ButtonGroup>
         <ButtonGroup className="sm:flex hidden">
           <Button variant="outline" size="sm">
+            <IconStar />
             Favorite
           </Button>
           <Button variant="outline" size="sm">
+            <IconNote />
             Notes
           </Button>
         </ButtonGroup>
         <ButtonGroup>
           <Button variant="outline" size="sm">
+            <IconArchive />
             Archive
           </Button>
           <DropdownMenu>
@@ -93,6 +99,10 @@ export function OrderButtonGroup({ id }: { id: string }) {
                 <DropdownMenuItem>
                   <IconMail />
                   Mark as Read
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <IconPlus />
+                  Add Material
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <IconArchive />

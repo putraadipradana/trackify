@@ -28,7 +28,7 @@ async function TableSection() {
 function PageHeader() {
   return (
     <div className="flex items-center justify-between">
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-0.5">
         <h1 className="text-xl/8 font-medium sm:text-2xl/8 tracking-tight">
           Orders
         </h1>

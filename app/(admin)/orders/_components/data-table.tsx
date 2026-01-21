@@ -6,6 +6,7 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -19,6 +20,7 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import React from "react";
+import { DataTablePagination } from "../../components/data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -39,13 +41,14 @@ export function DataTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     state: {
       columnFilters,
     },
   });
 
   return (
-    <div>
+    <div className="flex flex-col gap-5">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between sm:gap-0 gap-2">
         <Input
           placeholder="Search order number ..."
@@ -58,7 +61,7 @@ export function DataTable<TData, TValue>({
           className="sm:max-w-sm w-full"
         />
       </div>
-      <div className="overflow-hidden rounded-md mt-5 border">
+      <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -108,6 +111,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+      <DataTablePagination table={table} />
     </div>
   );
 }

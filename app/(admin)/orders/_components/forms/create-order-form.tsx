@@ -31,9 +31,17 @@ import { useState } from "react";
 import { toast } from "sonner";
 import z from "zod";
 
+// const statuses = [
+//   { label: "Select an option", value: null },
+//   { label: "Not Started", value: "not-started" },
+//   { label: "On Progress", value: "on-progress" },
+//   { label: "Done", value: "done" },
+// ] as const;
+
 const formSchema = z.object({
   orderNumber: z.string().min(1),
   amount: z.string().min(1),
+  status: z.enum(["not-started", "on-progress", "done"]),
 });
 
 export default function CreateOrderForm() {
@@ -45,6 +53,7 @@ export default function CreateOrderForm() {
     defaultValues: {
       orderNumber: "",
       amount: "",
+      status: "not-started",
     },
     validators: {
       onChange: formSchema,
@@ -133,6 +142,46 @@ export default function CreateOrderForm() {
                   );
                 }}
               />
+              {/* <form.Field
+                name="status"
+                children={(field) => {
+                  const isInvalid =
+                    field.state.meta.isTouched && !field.state.meta.isValid;
+                  return (
+                    <Field data-invalid={isInvalid}>
+                      <FieldLabel htmlFor={field.name}>Status</FieldLabel>
+                      <Select
+                        name={field.name}
+                        items={statuses}
+                        onValueChange={(value) =>
+                          field.handleChange(
+                            value as "not-started" | "on-progress" | "done",
+                          )
+                        }
+                      >
+                        <SelectTrigger
+                          aria-invalid={isInvalid}
+                          className="w-full"
+                        >
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            {statuses.map((option) => (
+                              <SelectValue key={option.value}>
+                                {option.label}
+                              </SelectValue>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
+                    </Field>
+                  );
+                }}
+              /> */}
               <form.Field
                 name="amount"
                 children={(field) => {
