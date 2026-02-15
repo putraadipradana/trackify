@@ -21,7 +21,7 @@ export const order = pgTable("order", {
     id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
     customerId: varchar('customer_id').notNull().references(() => customer.id, { onDelete: 'cascade' }),
     orderNumber: varchar("order_number", { length: 30 }).notNull().unique(),
-    status: varchar('order_status', { enum: ['not-started', 'on-progress', 'done'] }).notNull().default('not-started'),
+    status: varchar('order_status', { enum: ['not-started', 'in-progress', 'completed'] }).notNull().default('not-started'),
     priority: varchar('order_priority', { enum: ['low', 'medium', 'high'] }).notNull().default('low'),
     amount: varchar("amount").notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),

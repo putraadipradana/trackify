@@ -14,6 +14,7 @@ import {
   IconListDetails,
   IconSearch,
   IconSettings,
+  IconUsers,
   IconUsersGroup,
 } from "@tabler/icons-react";
 import NavMain from "./nav-main";
@@ -40,6 +41,11 @@ export default function AppSidebar({
       title: "Customers",
       url: "/customers",
       icon: IconUsersGroup,
+    },
+    {
+      title: "Users",
+      url: "/users",
+      icon: IconUsers,
     },
   ];
 

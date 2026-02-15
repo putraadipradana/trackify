@@ -13,12 +13,15 @@ import {
 } from "@/components/ui/drawer";
 import {
   Field,
+  FieldContent,
   FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
+  FieldTitle,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
@@ -31,17 +34,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import z from "zod";
 
-// const statuses = [
-//   { label: "Select an option", value: null },
-//   { label: "Not Started", value: "not-started" },
-//   { label: "On Progress", value: "on-progress" },
-//   { label: "Done", value: "done" },
-// ] as const;
-
 const formSchema = z.object({
   orderNumber: z.string().min(1),
   amount: z.string().min(1),
-  status: z.enum(["not-started", "on-progress", "done"]),
+  status: z.enum(["not-started", "in-progress", "completed"]),
 });
 
 export default function CreateOrderForm() {
@@ -142,46 +138,6 @@ export default function CreateOrderForm() {
                   );
                 }}
               />
-              {/* <form.Field
-                name="status"
-                children={(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name}>Status</FieldLabel>
-                      <Select
-                        name={field.name}
-                        items={statuses}
-                        onValueChange={(value) =>
-                          field.handleChange(
-                            value as "not-started" | "on-progress" | "done",
-                          )
-                        }
-                      >
-                        <SelectTrigger
-                          aria-invalid={isInvalid}
-                          className="w-full"
-                        >
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            {statuses.map((option) => (
-                              <SelectValue key={option.value}>
-                                {option.label}
-                              </SelectValue>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              /> */}
               <form.Field
                 name="amount"
                 children={(field) => {
@@ -199,6 +155,70 @@ export default function CreateOrderForm() {
                         aria-invalid={isInvalid}
                         autoComplete="off"
                       />
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
+                    </Field>
+                  );
+                }}
+              />
+              <form.Field
+                name="status"
+                children={(field) => {
+                  const isInvalid =
+                    field.state.meta.isTouched && !field.state.meta.isValid;
+                  return (
+                    <Field data-invalid={isInvalid}>
+                      <FieldLabel htmlFor={field.name}>Status</FieldLabel>
+                      <RadioGroup
+                        value={field.state.value}
+                        onValueChange={(value) => field.handleChange(value)}
+                        defaultValue="not-started"
+                        className="mt-1"
+                      >
+                        <FieldLabel htmlFor="not-started-order">
+                          <Field orientation="horizontal">
+                            <FieldContent>
+                              <FieldTitle>Not Started</FieldTitle>
+                              <FieldDescription>
+                                Order has not been started yet.
+                              </FieldDescription>
+                            </FieldContent>
+                            <RadioGroupItem
+                              value="not-started"
+                              id="not-started-order"
+                            />
+                          </Field>
+                        </FieldLabel>
+                        <FieldLabel htmlFor="in-progress-order">
+                          <Field orientation="horizontal">
+                            <FieldContent>
+                              <FieldTitle>In Progress</FieldTitle>
+                              <FieldDescription>
+                                Order is currently in progress.
+                              </FieldDescription>
+                            </FieldContent>
+                            <RadioGroupItem
+                              value="in-progress"
+                              id="in-progress-order"
+                            />
+                          </Field>
+                        </FieldLabel>
+                        <FieldLabel htmlFor="completed-order">
+                          <Field orientation="horizontal">
+                            <FieldContent>
+                              <FieldTitle>Completed</FieldTitle>
+                              <FieldDescription>
+                                Order is completed.
+                              </FieldDescription>
+                            </FieldContent>
+                            <RadioGroupItem
+                              value="completed"
+                              id="completed-order"
+                            />
+                          </Field>
+                        </FieldLabel>
+                      </RadioGroup>
                       {isInvalid && (
                         <FieldError errors={field.state.meta.errors} />
                       )}
